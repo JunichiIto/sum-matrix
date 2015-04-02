@@ -2,12 +2,11 @@ require "minitest/autorun"
 
 class TestMeme < Minitest::Test
   def sum_matrix(matrix)
-    rows = matrix.map{|row|
-      [*row, row.inject(:+)]
-    }
-    rows.transpose.map{|row|
-      [*row, row.inject(:+)]
-    }.transpose
+    matrix
+        .map{|row| [*row, row.inject(:+)] }
+        .transpose
+        .map{|row| [*row, row.inject(:+)] }
+        .transpose
   end
 
   def test_hoge
