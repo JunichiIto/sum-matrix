@@ -9,7 +9,7 @@ class TestMeme < Minitest::Test
         .transpose
   end
 
-  def test_hoge
+  def test_sum_matrix
     input = [
         [9,85,92,20],
         [68,25,80,55],
