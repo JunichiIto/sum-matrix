@@ -10,7 +10,11 @@ class TestMeme < Minitest::Test
   end
 
   def format_matrix(matrix)
-    matrix.map{|row| row.map{|col| col.to_s.rjust(4)}.join('|') }.join("\n")
+    matrix.map{|row| format_row(row) }.join("\n")
+  end
+
+  def format_row(row)
+    row.map{|col| col.to_s.rjust(4) }.join('|')
   end
 
   def test_format_matrix
