@@ -9,6 +9,22 @@ class TestMeme < Minitest::Test
         .transpose
   end
 
+  def format_matrix(matrix)
+    matrix.map{|row| row.map{|col| col.to_s.rjust(4)}.join('|') }.join("\n")
+  end
+
+  def test_format_matrix
+    input = [
+        [1,2,3,4],
+        [100,200,300,400]
+    ]
+    expected = <<-TEXT.chomp
+   1|   2|   3|   4
+ 100| 200| 300| 400
+    TEXT
+    assert_equal expected, format_matrix(input)
+  end
+
   def test_sum_matrix
     input = [
         [9,85,92,20],
