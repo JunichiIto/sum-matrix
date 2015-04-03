@@ -1,6 +1,6 @@
 require "minitest/autorun"
 
-class TestMeme < Minitest::Test
+class TestSumMatrix < Minitest::Test
   def sum_matrix(matrix)
     matrix
         .map{|row| [*row, row.inject(:+)] }
