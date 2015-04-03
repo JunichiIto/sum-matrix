@@ -17,6 +17,17 @@ class TestMeme < Minitest::Test
     row.map{|col| col.to_s.rjust(4) }.join('|')
   end
 
+  def generate_matrix(col: 4, row: 4, number_range: 1..9999)
+    row.times.map { number_range.to_a.sample(col) }
+  end
+
+  def test_generate_matrix
+    matrix = generate_matrix(col: 4, row: 5, number_range: 1..9999)
+    assert_equal 5, matrix.size
+    assert matrix.all?{|row| row.size == 4 }
+    assert matrix.all?{|row| row.all?{|n| (1..9999).include?(n) } }
+  end
+
   def test_format_matrix
     input = [
         [1,2,3,4],
