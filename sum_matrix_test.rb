@@ -3,7 +3,7 @@ require 'minitest/autorun'
 module SumMatrix
   extend self
 
-  def generate_sum_matrix(col: 4, row: 4, number_range: 1..9999)
+  def generate_sum_matrix(col: 4, row: 4, number_range: 1..1000)
     matrix = generate_matrix(col: col, row: row, number_range: number_range)
     format_matrix(sum_matrix(matrix))
   end
@@ -25,7 +25,7 @@ module SumMatrix
     row.map{|col| col.to_s.rjust(size) }.join('|')
   end
 
-  def generate_matrix(col: 4, row: 4, number_range: 1..9999)
+  def generate_matrix(col: 4, row: 4, number_range: 1..1000)
     row.times.map{ number_range.to_a.sample(col) }
   end
 end
@@ -86,7 +86,7 @@ class TestSumMatrix < Minitest::Test
 
   # テストしたいというよりも結果が見たいだけ
   def test_generate_sum_matrix
-    result = SumMatrix.generate_sum_matrix(col: 4, row: 4, number_range: 1..1000)
+    result = SumMatrix.generate_sum_matrix
     puts result
     assert result.is_a?(String)
   end
