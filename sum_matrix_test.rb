@@ -17,7 +17,7 @@ module SumMatrix
   end
 
   def format_matrix(matrix)
-    size = matrix.flatten.max.to_s.length
+    size = matrix.last.last.to_s.length
     matrix.map{|row| format_row(row, size) }.join("\n")
   end
 
