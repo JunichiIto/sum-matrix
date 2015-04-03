@@ -3,7 +3,7 @@ require 'minitest/autorun'
 module SumMatrix
   extend self
 
-  def generate_sum_matrix(col: 4, row: 4, number_range: 1..99)
+  def generate_sum_matrix(col: 4, row: 5, number_range: 1..99)
     matrix = generate_matrix(col: col, row: row, number_range: number_range)
     format_matrix(sum_matrix(matrix))
   end
@@ -25,7 +25,7 @@ module SumMatrix
     row.map{|col| col.to_s.rjust(size) }.join('|')
   end
 
-  def generate_matrix(col: 4, row: 4, number_range: 1..99)
+  def generate_matrix(col: 4, row: 5, number_range: 1..99)
     Array.new(row){ number_range.to_a.sample(col) }
   end
 end
