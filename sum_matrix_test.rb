@@ -17,11 +17,12 @@ module SumMatrix
   end
 
   def format_matrix(matrix)
-    matrix.map{|row| format_row(row) }.join("\n")
+    size = matrix.flatten.max.to_s.length
+    matrix.map{|row| format_row(row, size) }.join("\n")
   end
 
-  def format_row(row)
-    row.map{|col| col.to_s.rjust(4) }.join('|')
+  def format_row(row, size)
+    row.map{|col| col.to_s.rjust(size) }.join('|')
   end
 
   def generate_matrix(col: 4, row: 4, number_range: 1..9999)
@@ -37,14 +38,26 @@ class TestSumMatrix < Minitest::Test
     assert matrix.all?{|row| row.all?{|n| (1..9999).include?(n) } }
   end
 
-  def test_format_matrix
+  def test_format_matrix_max_400
     input = [
         [1,2,3,4],
         [100,200,300,400]
     ]
     expected = <<-TEXT.chomp
-   1|   2|   3|   4
- 100| 200| 300| 400
+  1|  2|  3|  4
+100|200|300|400
+    TEXT
+    assert_equal expected, SumMatrix.format_matrix(input)
+  end
+
+  def test_format_matrix_max_40
+    input = [
+        [1,2,3,4],
+        [10,20,30,40]
+    ]
+    expected = <<-TEXT.chomp
+ 1| 2| 3| 4
+10|20|30|40
     TEXT
     assert_equal expected, SumMatrix.format_matrix(input)
   end
