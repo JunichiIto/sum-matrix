@@ -1,6 +1,13 @@
 require "minitest/autorun"
 
-class TestSumMatrix < Minitest::Test
+module SumMatrix
+  extend self
+
+  def generate_sum_matrix(col: 4, row: 4, number_range: 1..9999)
+    matrix = generate_matrix(col: col, row: row, number_range: number_range)
+    format_matrix(sum_matrix(matrix))
+  end
+
   def sum_matrix(matrix)
     matrix
         .map{|row| [*row, row.inject(:+)] }
@@ -20,9 +27,11 @@ class TestSumMatrix < Minitest::Test
   def generate_matrix(col: 4, row: 4, number_range: 1..9999)
     row.times.map { number_range.to_a.sample(col) }
   end
+end
 
+class TestSumMatrix < Minitest::Test
   def test_generate_matrix
-    matrix = generate_matrix(col: 4, row: 5, number_range: 1..9999)
+    matrix = SumMatrix.generate_matrix(col: 4, row: 5, number_range: 1..9999)
     assert_equal 5, matrix.size
     assert matrix.all?{|row| row.size == 4 }
     assert matrix.all?{|row| row.all?{|n| (1..9999).include?(n) } }
@@ -37,7 +46,7 @@ class TestSumMatrix < Minitest::Test
    1|   2|   3|   4
  100| 200| 300| 400
     TEXT
-    assert_equal expected, format_matrix(input)
+    assert_equal expected, SumMatrix.format_matrix(input)
   end
 
   def test_sum_matrix
@@ -57,6 +66,12 @@ class TestSumMatrix < Minitest::Test
         [258,291,336,297,1182]
     ]
 
-    assert_equal expected, sum_matrix(input)
+    assert_equal expected, SumMatrix.sum_matrix(input)
+  end
+
+  def test_generate_sum_matrix
+    result = SumMatrix.generate_sum_matrix(col: 4, row: 4, number_range: 1..1000)
+    puts result
+    assert result.is_a?(String)
   end
 end
