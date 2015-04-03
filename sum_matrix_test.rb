@@ -26,7 +26,7 @@ module SumMatrix
   end
 
   def generate_matrix(col: 4, row: 4, number_range: 1..1000)
-    row.times.map{ number_range.to_a.sample(col) }
+    Array.new(row){ number_range.to_a.sample(col) }
   end
 end
 
