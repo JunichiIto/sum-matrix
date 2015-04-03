@@ -26,26 +26,26 @@ module SumMatrix
   end
 
   def generate_matrix(col: 4, row: 4, number_range: 1..9999)
-    row.times.map { number_range.to_a.sample(col) }
+    row.times.map{ number_range.to_a.sample(col) }
   end
 end
 
 class TestSumMatrix < Minitest::Test
   def test_sum_matrix
     input = [
-        [9,85,92,20],
-        [68,25,80,55],
-        [43,96,71,73],
-        [43,19,20,87],
-        [95,66,73,62]
+        [9, 85, 92, 20],
+        [68, 25, 80, 55],
+        [43, 96, 71, 73],
+        [43, 19, 20, 87],
+        [95, 66, 73, 62]
     ]
     expected = [
-        [9,85,92,20,206],
-        [68,25,80,55,228],
-        [43,96,71,73,283],
-        [43,19,20,87,169],
-        [95,66,73,62,296],
-        [258,291,336,297,1182]
+        [9, 85, 92, 20, 206],
+        [68, 25, 80, 55, 228],
+        [43, 96, 71, 73, 283],
+        [43, 19, 20, 87, 169],
+        [95, 66, 73, 62, 296],
+        [258, 291, 336, 297, 1182]
     ]
 
     assert_equal expected, SumMatrix.sum_matrix(input)
@@ -53,25 +53,27 @@ class TestSumMatrix < Minitest::Test
 
   def test_format_matrix_max_400
     input = [
-        [1,2,3,4],
-        [100,200,300,400]
+        [1, 2, 3, 4],
+        [100, 200, 300, 400]
     ]
     expected = <<-TEXT.chomp
   1|  2|  3|  4
 100|200|300|400
     TEXT
+
     assert_equal expected, SumMatrix.format_matrix(input)
   end
 
   def test_format_matrix_max_40
     input = [
-        [1,2,3,4],
-        [10,20,30,40]
+        [1, 2, 3, 4],
+        [10, 20, 30, 40]
     ]
     expected = <<-TEXT.chomp
  1| 2| 3| 4
 10|20|30|40
     TEXT
+
     assert_equal expected, SumMatrix.format_matrix(input)
   end
 
