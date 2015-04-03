@@ -82,6 +82,9 @@ class TestSumMatrix < Minitest::Test
     assert_equal 5, matrix.size
     assert matrix.all?{|row| row.size == 4 }
     assert matrix.flatten.all?{|n| n.between?(1, 9999) }
+
+    matrix2 = SumMatrix.generate_matrix(col: 4, row: 5, number_range: 1..9999)
+    assert matrix != matrix2, 'ランダムな結果が得られること'
   end
 
   # テストしたいというよりも結果が見たいだけ
