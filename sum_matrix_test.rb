@@ -17,7 +17,7 @@ module SumMatrix
   end
 
   def format_matrix(matrix)
-    size = matrix.flatten.max.to_s.length
+    size = matrix.flatten.max.to_s.length + 1
     matrix.map{|row| format_row(row, size) }.join("\n")
   end
 
@@ -57,8 +57,8 @@ class TestSumMatrix < Minitest::Test
         [100, 200, 300, 400]
     ]
     expected = <<-TEXT.chomp
-  1|  2|  3|  4
-100|200|300|400
+   1|   2|   3|   4
+ 100| 200| 300| 400
     TEXT
 
     assert_equal expected, SumMatrix.format_matrix(input)
@@ -70,8 +70,8 @@ class TestSumMatrix < Minitest::Test
         [10, 20, 30, 40]
     ]
     expected = <<-TEXT.chomp
- 1| 2| 3| 4
-10|20|30|40
+  1|  2|  3|  4
+ 10| 20| 30| 40
     TEXT
 
     assert_equal expected, SumMatrix.format_matrix(input)
